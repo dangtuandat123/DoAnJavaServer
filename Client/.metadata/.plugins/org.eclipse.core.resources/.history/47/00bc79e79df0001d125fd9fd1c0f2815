@@ -1,0 +1,105 @@
+package Client;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Client {
+
+	private String userName;
+	private String tinNhan;
+	private String tinNhanGui;
+	private String tinNhanNhanMoi;
+	private String tinNhanNhanCu;
+	private String tinNhanNhan;
+	private DataInputStream in;
+	private DataOutputStream out;
+
+	public void ClientStart(String host, int port) {
+		try {
+			Socket client = new Socket(host, port);
+			in = new DataInputStream(client.getInputStream());
+			out = new DataOutputStream(client.getOutputStream());
+			//
+			Scanner sc = new Scanner(System.in);
+			// nhap user name
+			System.out.println("Nhap Username");
+			userName = sc.nextLine();
+			out.writeUTF(userName);
+			//hien thi danh sach nguoi dung online
+			System.out.println(in.readUTF());
+			
+			//nhap user name muon ket noi			
+			System.out.println("Nhap User muon ket noi");
+			userName = sc.nextLine();
+			out.writeUTF(userName);
+			System.out.println("-----------------------");
+			tinNhanNhan = "";
+			Thread threadDocTinNhan = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					while (!tinNhanNhan.equals("exit")) {
+						try {
+							tinNhanNhan = in.readUTF();
+//							if(tinNhanNhan=="-----") {
+//								tinNhanNhan = in.readUTF();
+//								System.out.println(tinNhanNhan);
+//								String LuaChon = sc.nextLine();
+//								if(LuaChon.equals("yes")) {
+//									
+//								}
+//								out.writeUTF(tinNhanGui);
+//							}
+								
+							System.out.println(tinNhanNhan);
+
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+
+				}
+			});
+			
+			tinNhanGui = "";
+			Thread threadGuiTinNhan = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					while (!tinNhanGui.equals("exit")) {
+						
+						tinNhanGui = sc.nextLine();
+						try {
+							out.writeUTF(tinNhanGui);
+							System.out.println("Ban: "+tinNhanGui);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+
+				}
+			});
+
+			threadDocTinNhan.start();
+			threadGuiTinNhan.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void khoiDong() {
+		Client client = new Client();
+		try {
+			client.ClientStart("localhost", 5555);
+		} catch (Exception e) {
+
+		}
+	}
+}

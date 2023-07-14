@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;Socket&apos; to &apos;Server&apos;&#x0D;&#x0A;- Original project: &apos;Bai2Server&apos;&#x0D;&#x0A;- Original element: &apos;Bai2Server/src/Socket&apos;&#x0D;&#x0A;- Renamed element: &apos;Bai2Server/src/Server&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;Socket&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;Socket" name="Server" qualified="false" references="true" stamp="1682057617286" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,39 @@
+import java.util.HashMap;
+
+public class Client implements Runnable {
+    private String name;
+
+    public Client(String name) {
+        this.name = name;
+    }
+
+    public void run() {
+        // do something with the data passed to the thread
+        System.out.println(name + " is running.");
+    }
+
+    public static void main(String[] args) {
+        HashMap<String, Thread> threadMap = new HashMap<>();
+
+        // create and start threads
+        for (int i = 0; i < 100; i++) {
+            String threadName = "Thread-" + i;
+            Client runnable = new Client(threadName);
+            Thread thread = new Thread(runnable);
+            thread.setName(threadName);
+            threadMap.put(threadName, thread);
+            thread.start();
+        }
+
+        // pass data to a specific thread
+        String targetThreadName = "Thread-42";
+        Thread targetThread = threadMap.get(targetThreadName);
+        if (targetThread != null) {
+            Object data = "Hello, thread!";
+            targetThread.interrupt(); // optional: interrupt the thread to wake it up
+            // pass the data to the thread
+            Client runnable = (Client) targetThread.getRunnable();
+            runnable.setData(data);
+        }
+    }
+}

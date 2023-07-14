@@ -1,0 +1,99 @@
+package Server;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class ThreadServer extends Thread {
+
+	private Socket socket;
+	private String data;
+	private DataInputStream in;
+	private DataOutputStream out;
+	private String listUser;
+	private String userNguoiDungMuonKetNoi;
+	private HashMap<String, Thread> threadMap;
+	private String tinNhan;
+	private String tinNhanNhan;
+	private String tinNhanGui;
+	private ThreadServer targetThread;
+
+	public ThreadServer(Socket socket) {
+		this.socket = socket;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public void guiHashMap(HashMap<String, Thread> threadMap) {
+		this.threadMap = threadMap;
+	}
+
+	public void nhanTinNhanTuNguoiDung(String tinNhan) {
+		this.tinNhan = tinNhan;
+		System.out.println(tinNhan);
+	}
+
+	public void guiTinNhanChoNguoiDung(String tinNhan, String user ) {
+		
+		targetThread = (ThreadServer) threadMap.get(user);
+		targetThread.nhanTinNhanTuNguoiDung(tinNhan);
+	}
+
+	public void guiDanhSachNguoiDung(String listUser) {
+		this.listUser = listUser;
+	}
+
+	public void run() {
+		try {
+			in = new DataInputStream(socket.getInputStream());
+			out = new DataOutputStream(socket.getOutputStream());
+			out.writeUTF(listUser);
+
+			System.out.println("Data received: " + data);
+			userNguoiDungMuonKetNoi = in.readUTF();
+			System.out.println("nguoi dung muon ket noi voi: " + userNguoiDungMuonKetNoi);
+			System.out.println();
+
+			tinNhanNhan = "";
+
+			
+
+				
+					while (!tinNhanNhan.equals("exit")) {
+						try {
+							//System.out.println();
+							
+							//System.out.println();
+							
+							
+							guiTinNhanChoNguoiDung(in.readUTF(),userNguoiDungMuonKetNoi);
+							
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+
+				
+			
+			Scanner sc = new Scanner(System.in);
+			//
+			tinNhanGui = "";
+			
+			
+			
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}

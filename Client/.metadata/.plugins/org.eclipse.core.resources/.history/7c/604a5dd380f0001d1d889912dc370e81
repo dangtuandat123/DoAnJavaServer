@@ -1,0 +1,28 @@
+package Client;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class ClientForm extends JFrame{
+	
+	
+
+	private JPanel jPanel_dangNhap;
+
+	public void khoiDong() {
+		this.setTitle("Đăng nhập quản lý internet");
+		this.setSize(600, 400);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLayout(new BorderLayout());
+		jPanel_dangNhap = new JPanel();
+		this.add(jPanel_dangNhap);
+		this.setVisible(true);
+	}
+	public static void main(String[] args) {
+		khoiDong();
+	}
+
+}

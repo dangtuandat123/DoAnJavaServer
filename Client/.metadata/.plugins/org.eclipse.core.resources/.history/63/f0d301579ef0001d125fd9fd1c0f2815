@@ -1,0 +1,40 @@
+package Client;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Client {
+
+	private String userName;
+	private String tinNhan;
+	private String tinNhanGui;
+	private String tinNhanNhanMoi;
+	private String tinNhanNhanCu;
+	private String tinNhanNhan;
+	private DataInputStream in;
+	private DataOutputStream out;
+
+	public void ClientStart(String host, int port) {
+		try {
+			Socket client = new Socket(host, port);
+			Thread thread = new Thread();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void khoiDong() {
+		Client client = new Client();
+		try {
+			client.ClientStart("localhost", 5555);
+		} catch (Exception e) {
+
+		}
+	}
+}

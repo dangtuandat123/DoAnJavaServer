@@ -1,0 +1,44 @@
+package Client;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Client {
+
+	public void ClientStart(String host, int port) {
+		try {
+			Socket client = new Socket(host, port);
+			DataInputStream in = new DataInputStream(client.getInputStream());
+			DataOutputStream out = new DataOutputStream(client.getOutputStream());
+			//
+			String mess = "";
+			Scanner sc = new Scanner(System.in);
+			while(mess.equals("x")) {
+				mess = sc.nextLine();
+				System.out.println(in.readUTF()); 
+				out.writeUTF(mess);
+			}
+			//
+			System.out.println("Nhap Username");
+			
+			String userName = sc.nextLine();
+			out.writeUTF(userName);
+			
+			} catch (Exception e) {
+
+		}
+
+	}
+
+	public static void main(String[] args) {
+		Client client = new Client();
+		try {
+			client.ClientStart("localhost", 3333);
+		} catch (Exception e) {
+
+		}
+	}
+}

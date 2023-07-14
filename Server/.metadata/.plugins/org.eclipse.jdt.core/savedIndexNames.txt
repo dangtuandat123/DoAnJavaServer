@@ -1,0 +1,12 @@
+INDEX VERSION 1.131+C:\Users\ADMIN\Desktop\hocTap\Java\Server\.metadata\.plugins\org.eclipse.jdt.core
+3559899901.index
+243673873.index
+1657330681.index
+1918421321.index
+1350823186.index
+3423622742.index
+1865797976.index
+4177276409.index
+3855079520.index
+3087005639.index
+2233841737.index

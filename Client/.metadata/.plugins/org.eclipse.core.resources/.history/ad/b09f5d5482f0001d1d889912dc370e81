@@ -1,0 +1,14 @@
+package Client_View;
+
+public class Snippet {
+	this.setTitle("Đăng nhập quản lý internet");
+			this.setSize(600, 400);
+			this.setLocationRelativeTo(null);
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setLayout(new BorderLayout());
+			jPanel_dangNhap = new JPanel();
+			this.add(jPanel_dangNhap);
+			dangNhap();
+			this.setVisible(true);
+}
+

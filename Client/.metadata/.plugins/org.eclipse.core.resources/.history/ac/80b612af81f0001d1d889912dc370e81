@@ -1,0 +1,25 @@
+package Client;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class ClientForm{
+	
+	
+
+	
+	
+	private JPanel jPanel_dangNhap;
+
+	
+	public  void khoiDong() {
+		
+		
+	}
+	public void main(String[] args) {
+		khoiDong();
+	}
+
+}

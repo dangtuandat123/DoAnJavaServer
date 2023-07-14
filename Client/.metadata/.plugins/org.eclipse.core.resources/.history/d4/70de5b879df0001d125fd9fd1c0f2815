@@ -1,0 +1,12 @@
+package Client;
+
+public class ClientThread extends Thread
+{
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,24 @@
+package Client_View;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class ClientGiaoDien extends JFrame{
+	
+	private Component jPanel_dangNhap;
+
+	public void khoiDong() {
+		this.setTitle("Đăng nhập quản lý internet");
+		this.setSize(600, 400);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.setLayout(new BorderLayout());
+		jPanel_dangNhap = new JPanel();		
+		this.add(jPanel_dangNhap);	
+		this.setVisible(true);	}
+
+	
+}

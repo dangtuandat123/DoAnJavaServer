@@ -1,0 +1,24 @@
+package Client;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ClientControler implements ActionListener{
+
+	private ClientGiaoDien clientGiaoDien;
+	public ClientControler(ClientGiaoDien clientGiaoDien) {
+
+		this.clientGiaoDien = clientGiaoDien;
+
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String suKien = e.getActionCommand();
+		if (suKien.equals("Dang nhap")) {
+			
+
+		}
+		
+	}
+
+}

@@ -1,0 +1,87 @@
+package Client;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Client {
+
+	private String userName;
+	private String tinNhan;
+	private String tinNhanGui;
+	private String tinNhanNhanMoi;
+	private String tinNhanNhanCu;
+	private String tinNhanNhan;
+
+	public void ClientStart(String host, int port) {
+		try {
+			Socket client = new Socket(host, port);
+			DataInputStream in = new DataInputStream(client.getInputStream());
+			DataOutputStream out = new DataOutputStream(client.getOutputStream());
+			//
+			Scanner sc = new Scanner(System.in);
+			//
+			System.out.println("Nhap Username");
+			userName = sc.nextLine();
+			out.writeUTF(userName);
+			//
+			System.out.println(in.readUTF());
+			//
+			System.out.println("Nhap User muon ket noi");
+			userName = sc.nextLine();
+			out.writeUTF(userName);
+
+			tinNhanNhan = "";
+
+			Thread threadDocTinNhan = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					while (tinNhanNhan.equals("exit")) {
+						try {
+							System.out.println(in.readUTF());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+
+				}
+			});
+			tinNhanGui = "";
+			Thread threadGuiTinNhan = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					while (tinNhanGui.equals("exit")) {
+						System.out.println("nhap tin nhan");
+						tinNhanGui = sc.nextLine();
+						try {
+							out.writeUTF(tinNhanGui);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+
+				}
+			});
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
+	public static void main(String[] args) {
+		Client client = new Client();
+		try {
+			client.ClientStart("localhost", 2222);
+		} catch (Exception e) {
+
+		}
+	}
+}

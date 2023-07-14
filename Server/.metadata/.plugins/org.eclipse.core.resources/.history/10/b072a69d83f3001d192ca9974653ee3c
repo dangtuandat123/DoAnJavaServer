@@ -1,0 +1,10 @@
+/**
+ * 
+ */
+/**
+ * @author ADMIN
+ *
+ */
+module DoAnCuoiKi2Server {
+	requires java.sql;
+}

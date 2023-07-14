@@ -1,0 +1,54 @@
+package Server;
+
+import java.io.*;
+import java.net.*;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Server {
+
+	public void ServerStart(int port){
+		try {
+			
+		ServerSocket serverSocket = new ServerSocket(port);
+		System.out.println("Server da khoi dong Port: " + port);
+
+		while (true) {
+			HashMap<String, Thread> threadMap = new HashMap<>();
+			Socket socket = serverSocket.accept();
+			System.out.println("Client " + socket.getInetAddress() + " da ket noi");
+			//
+			DataInputStream in = new DataInputStream(socket.getInputStream());
+			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+			//
+			String mess = "";
+			Scanner sc = new Scanner(System.in);
+			
+			//
+			//taoThread
+			String userName = in.readUTF();
+			ThreadServer thread = new ThreadServer(socket);		
+			thread.setName(userName);
+			threadMap.put(thread.getName(), thread);
+		    thread.start();		    
+		    ThreadServer targetThread = (ThreadServer) threadMap.get(userName);
+	        targetThread.setData("Hello "+userName);
+			
+		}
+		} catch (Exception e) {
+			
+		}
+	}
+
+	public static void main(String[] args) {
+		Server server = new Server();
+		try {
+			server.ServerStart(1111);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
